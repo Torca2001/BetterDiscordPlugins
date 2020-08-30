@@ -2352,8 +2352,20 @@ var NeatoLib = {
 	},
 
 	getClass: function(moduleName, className = moduleName, index = 0) {
-		let temp = NeatoLib.Modules.get(moduleName);
-		if(!temp || typeof temp[className] !== "string") return;
+		let templist = BdApi.findAllModules( o => o[moduleName] != undefined);
+		let temp = undefined;
+		for (i = 0; i < 5; i++) {
+			temp = templist[i];
+			if (temp != undefined && typeof temp[className] === "string"){
+				break;
+			}
+			else{
+			temp = undefined;
+			}
+		}
+		if(!temp){
+			return;
+		}
 		if(!temp[className]) return temp[moduleName].split(" ")[index];
 		return temp[className].split(" ")[index];
 	},
