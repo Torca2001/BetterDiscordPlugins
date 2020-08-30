@@ -2354,7 +2354,7 @@ var NeatoLib = {
 	getClass: function(moduleName, className = moduleName, index = 0) {
 		let templist = BdApi.findAllModules( o => o[moduleName] != undefined);
 		let temp = undefined;
-		for (i = 0; i < 5; i++) {
+		for (i = 0; i < templist.length; i++) {
 			temp = templist[i];
 			if (temp != undefined && typeof temp[className] === "string"){
 				break;
